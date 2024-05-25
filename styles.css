@@ -244,7 +244,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 20px;
-    width: 80%;
+    width: 90%;
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
@@ -260,6 +260,46 @@ footer {
 .work-info {
     display: flex;
     flex-direction: column;
+}
+
+.work-title {
+    display: block;
+    font-size: 1.25em;
+    margin-block-start: 1em;
+    margin-block-end: 0.3em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    color: #333;
+    text-decoration: underline;
+    text-decoration-color: #333; /* Adicionado */
+}
+
+.work-subtitle {
+    display: block;
+    font-size: 1em;
+    margin-block-start: 0em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: lighter;
+    unicode-bidi: isolate;
+    color: #7a7a7a;
+    text-decoration: underline;
+    text-decoration-color: #7a7a7a; /* Adicionado */
+}
+
+.work-text {
+    display: block;
+    margin-block-start: 0.5em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    color: #afafaf;
+    text-decoration: underline;
+    text-decoration-color: #afafaf; /* Adicionado */
 }
 
 @media (max-width: 1200px) {
@@ -339,15 +379,11 @@ footer {
         height: 24px;
     }
 
-    main {
-        padding: 10px;
-    }
-
     nav ul {
         flex-direction: row;
         flex-wrap: nowrap;
         align-items: center;
-        padding-left: 20px;
+        padding-left: 0px;
         gap: 5px;
     }
 
@@ -373,6 +409,18 @@ footer {
         margin-top: 20px;
     }
 
+    .about-text {
+        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .story-text {
+        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .story-image {
         margin-top: 20px;
         width: 100%;
@@ -393,10 +441,21 @@ footer {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 320px) {
     .portfolio-grid {
         column-count: 1;
         column-gap: 10px;
+    }
+    .about-text {
+        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .story-text {
+        padding: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -414,8 +473,9 @@ footer {
 }
 
 .about-title {
-    font-size: 2.5em;
+    font-size: 3em;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .about-intro {
@@ -433,13 +493,25 @@ footer {
 }
 
 h3 {
-    text-align: center;
+    text-align: left;
 }
 
 .about .about-text, .about .story-text {
     text-align: center;
     line-height: 1.4;
     margin: 10px 0;
+}
+
+.about-text {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.story-text {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .story-image {
@@ -475,14 +547,14 @@ h3 {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 320px) {
     .portfolio-grid {
         column-count: 1;
         column-gap: 10px;
     }
 
     .about-title {
-        font-size: 3.3em;
+        font-size: 3em;
         text-align: center;
     }
 }
@@ -514,6 +586,7 @@ h3 {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: 'Poppins', sans-serif;
+    align-self: center;
 }
 
 .contact-form button {
