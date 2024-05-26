@@ -307,6 +307,12 @@ footer {
     text-decoration-color: #afafaf; /* Adicionado */
 }
 
+.about-text {
+    padding: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
 @media (max-width: 1200px) {
     .portfolio-grid, .portfolio-ben10-grid-2, .portfolio-ben10-grid {
         column-count: 3;
@@ -341,6 +347,12 @@ footer {
         flex-direction: row;
         flex-wrap: nowrap;
         gap: 10px;
+    }
+
+    .about-text {
+        padding: 10px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
 
     .work-block {
@@ -416,8 +428,8 @@ footer {
 
     .about-text {
         padding: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 10%;
+        padding-right: 10%;
     }
     
     .story-text {
@@ -453,8 +465,8 @@ footer {
     }
     .about-text {
         padding: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 3%;
+        padding-right: 3%;
     }
     
     .story-text {
@@ -491,7 +503,7 @@ footer {
 
 .about-image {
     margin-top: 20px;
-    width: 50%;
+    width: 40%;
     height: auto;
     border-radius: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -505,12 +517,6 @@ h3 {
     text-align: center;
     line-height: 1.4;
     margin: 10px 0;
-}
-
-.about-text {
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .story-text {
@@ -550,6 +556,10 @@ h3 {
         height: 60px;
         margin-right: 10px;
     }
+    
+    .work-title {
+        text-align: center;
+    }
 }
 
 @media (max-width: 320px) {
@@ -560,6 +570,10 @@ h3 {
 
     .about-title {
         font-size: 3em;
+        text-align: center;
+    }
+
+    .work-title {
         text-align: center;
     }
 }
@@ -699,6 +713,7 @@ a:hover {
 .portfolio-missao-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colunas fixas */
+    gap: 10px;
     margin-top: 20px;
     justify-items: center;
 }
@@ -715,15 +730,47 @@ a:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+#mailtoher {
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.story-text {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 720px) {
     .portfolio-missao-grid {
         grid-template-columns: repeat(1, 1fr);
     }
-}
+    #mailtoher {
+        padding-left: 10%;
+        padding-right: 10%;
+
+    }
+    .story-text {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 
 @media (max-width: 320px) {
     .portfolio-missao-grid {
         grid-template-columns: repeat(1, 1fr);
     }
+    #mailtoher {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    }
+    .about-image {
+        width: 60%;
+    }
+    .story-text {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
 }
+
