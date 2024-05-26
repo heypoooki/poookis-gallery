@@ -10,13 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-scroll-container>
         <header>
             <div class="header-content">
                 <img src="img/pfp.png" alt="Profile Picture" class="profile-pic">
-                <h1 class="reenie-beanie-regular">Poooki's Gallery</h1>
+                <h1 class="reenie-beanie-regular header-title">Poooki's Gallery</h1>
             </div>
         </header>
         <nav>
@@ -43,6 +44,7 @@
                     <img src="thumbnail/5_thumbnail.jpg" data-full="img/5.png" alt="Portfolio Image 5">
                     <img src="thumbnail/6_thumbnail.jpg" data-full="img/6.png" alt="Portfolio Image 6">
                     <!-- Separação 1 -->
+                    <img src="thumbnail/7.0_thumbnail.jpg" data-full="img/7.0.png" alt="Portfolio Image 7.0">
                     <img src="thumbnail/7_thumbnail.jpg" data-full="img/7.png" alt="Portfolio Image 7">
                     <img src="thumbnail/8_thumbnail.jpg" data-full="img/8.png" alt="Portfolio Image 8">
                     <img src="thumbnail/9_thumbnail.jpg" data-full="img/9.png" alt="Portfolio Image 9">
@@ -63,10 +65,12 @@
     </div>
 
     <div id="lightbox" class="lightbox">
+        <span class="prev">&lt;</span>
+        <span class="next">&gt;</span>
         <span class="close">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

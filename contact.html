@@ -10,13 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-scroll-container>
         <header>
             <div class="header-content">
                 <img src="img/pfp.png" alt="Profile Picture" class="profile-pic">
-                <h1 class="reenie-beanie-regular">Poooki's Contact</h1>
+                <h1 class="reenie-beanie-regular header-title">Poooki's Contact</h1>
             </div>
         </header>
         <nav>
@@ -35,14 +36,40 @@
         <main>
             <section class="contact">
                 <p style="text-align: center;">Feel free to reach out to me through any of the social media links above or via email at gabewcontact@gmail.com.</p>
+                <form class="contact-form">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Submit</button>
+                </form>
             </section>
         </main>
+        <footer>
+            <p>&copy; Copyright ℗ 2024 - All rights reserved - Poooki's Portfolio</p>
+        </footer>    
     </div>
 
-    <footer>
-        <p>&copy; Copyright ℗ 2024 - All rights reserved - Poooki's Portfolio</p>
-    </footer>
-
+    <div id="lightbox" class="lightbox">
+        <span class="prev">&lt;</span>
+        <span class="next">&gt;</span>
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("rT9ZOnSiwchNPHcYZ"); // Substitua pelo seu User ID do EmailJS
+        })();
+    </script>
+    
 </body>
 </html>
