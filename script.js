@@ -1,31 +1,29 @@
-// Get the modal
+// Seleciona os elementos do lightbox
 var lightbox = document.getElementById('lightbox');
-
-// Get the image and insert it inside the modal
 var lightboxImg = document.getElementById("lightbox-img");
-var images = document.querySelectorAll('.portfolio-grid img');
 var pageContent = document.getElementById('page-content');
+
+// Seleciona as imagens das galerias
+var gallery1 = document.querySelectorAll('.portfolio-grid img');
+var gallery2 = document.querySelectorAll('.portfolio-ben10-grid img');
+var gallery3 = document.querySelectorAll('.portfolio-ben10-grid-2 img');
+var gallery4 = document.querySelectorAll('.portfolio-missao-grid img'); // Adiciona a nova galeria
+
+// Variáveis para controlar a galeria atual e o índice da imagem
+var currentGallery = [];
 var currentIndex = 0;
 
-images.forEach((image, index) => {
-    image.addEventListener('click', function() {
-        lightbox.style.display = "flex";
-        lightboxImg.src = this.getAttribute('data-full'); // Load the high-resolution image
-        pageContent.classList.add('blur'); // Add the blur class to the page content
-        currentIndex = index; // Set the current index
-        console.log("Image clicked, currentIndex:", currentIndex);
+// Função para abrir o lightbox
+function openLightbox(gallery, index) {
+    currentGallery = gallery;
+    currentIndex = index;
+    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    lightbox.style.display = "flex";
+    pageContent.classList.add('blur');
+    console.log("Lightbox opened, currentIndex:", currentIndex);
 
-        // Atualizar o Locomotive Scroll
-        if (scroll) {
-            scroll.update();
-        }
-    });
-});
-
-// Function to close the lightbox
-function closeLightbox() {
-    lightbox.style.display = "none";
-    pageContent.classList.remove('blur'); // Remove the blur class from the page content
+    // Inicializa a lupa após um pequeno atraso para garantir que a imagem esteja carregada
+    setTimeout(initializeZoom, 100);
 
     // Atualizar o Locomotive Scroll
     if (scroll) {
@@ -33,38 +31,89 @@ function closeLightbox() {
     }
 }
 
-// Get the <span> element that closes the modal
-var close = document.getElementsByClassName("close")[0];
+// Função para inicializar a lupa
+function initializeZoom() {
+    // Remove qualquer zoom já existente
+    $('.zoomContainer').remove();
+    $('#lightbox-img').removeData('elevateZoom');
 
-// When the user clicks on <span> (x), close the modal
+    // Inicializa o zoom
+    $('#lightbox-img').elevateZoom({
+        zoomType: "lens",
+        lensShape: "round",
+        lensSize: 200,
+        cursor: 'pointer' // Adiciona o cursor para indicar que a imagem pode ser ampliada
+    });
+}
+
+// Função para fechar o lightbox
+function closeLightbox() {
+    lightbox.style.display = "none";
+    pageContent.classList.remove('blur');
+
+    // Atualizar o Locomotive Scroll
+    if (scroll) {
+        scroll.update();
+    }
+}
+
+// Adiciona evento de clique para cada imagem das galerias
+gallery1.forEach((image, index) => {
+    image.addEventListener('click', function() {
+        openLightbox(gallery1, index);
+    });
+});
+
+gallery2.forEach((image, index) => {
+    image.addEventListener('click', function() {
+        openLightbox(gallery2, index);
+    });
+});
+
+gallery3.forEach((image, index) => {
+    image.addEventListener('click', function() {
+        openLightbox(gallery3, index);
+    });
+});
+
+gallery4.forEach((image, index) => {
+    image.addEventListener('click', function() {
+        openLightbox(gallery4, index);
+    });
+});
+
+// Evento de clique para o botão de fechar
+var close = document.getElementsByClassName("close")[0];
 close.onclick = function() {
     closeLightbox();
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// Evento de clique fora do modal para fechar
 window.onclick = function(event) {
     if (event.target == lightbox) {
         closeLightbox();
     }
 }
 
-// Navigation through images
+// Navegação pelas imagens
 var prev = document.querySelector('.prev');
 var next = document.querySelector('.next');
 
 prev.addEventListener('click', function() {
-    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    currentIndex = (currentIndex === 0) ? currentGallery.length - 1 : currentIndex - 1;
     console.log("Prev clicked, currentIndex:", currentIndex);
-    lightboxImg.src = images[currentIndex].getAttribute('data-full');
+    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    setTimeout(initializeZoom, 100);
 });
 
 next.addEventListener('click', function() {
-    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    currentIndex = (currentIndex === currentGallery.length - 1) ? 0 : currentIndex + 1;
     console.log("Next clicked, currentIndex:", currentIndex);
-    lightboxImg.src = images[currentIndex].getAttribute('data-full');
+    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    setTimeout(initializeZoom, 100);
 });
 
-// Swipe functionality for touch devices
+// Funcionalidade de swipe para dispositivos móveis
 lightbox.addEventListener('touchstart', handleTouchStart, false);
 lightbox.addEventListener('touchmove', handleTouchMove, false);
 
@@ -91,20 +140,21 @@ function handleTouchMove(evt) {
     if (Math.abs(xDiff) > Math.abs(yDiff)) { // Most significant
         if (xDiff > 0) {
             // Left swipe
-            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            currentIndex = (currentIndex === currentGallery.length - 1) ? 0 : currentIndex + 1;
         } else {
             // Right swipe
-            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            currentIndex = (currentIndex === 0) ? currentGallery.length - 1 : currentIndex - 1;
         }
         console.log("Swipe detected, currentIndex:", currentIndex);
-        lightboxImg.src = images[currentIndex].getAttribute('data-full');
+        lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+        setTimeout(initializeZoom, 100);
     }
     // Reset values
     xDown = null;
     yDown = null;
 }
 
-// Keyboard navigation functionality
+// Navegação por teclado
 document.addEventListener('keydown', function(event) {
     if (lightbox.style.display === 'flex') {
         if (event.key === 'ArrowLeft') {
@@ -140,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Envio de formulário de contato
 document.querySelector('.contact-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
