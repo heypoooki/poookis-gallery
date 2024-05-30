@@ -1,6 +1,10 @@
-// Seleciona os elementos do lightbox
 var lightbox = document.getElementById('lightbox');
+var lightboxContent = document.querySelector('.lightbox-content');
 var lightboxImg = document.getElementById("lightbox-img");
+var lightboxTitle = document.getElementById("lightbox-title");
+var lightboxDate = document.getElementById("lightbox-date");
+var lightboxAbout = document.getElementById("lightbox-about");
+var lightboxHistory = document.getElementById("lightbox-history");
 var pageContent = document.getElementById('page-content');
 
 // Seleciona as imagens das galerias
@@ -8,6 +12,7 @@ var gallery1 = document.querySelectorAll('.portfolio-grid img');
 var gallery2 = document.querySelectorAll('.portfolio-ben10-grid img');
 var gallery3 = document.querySelectorAll('.portfolio-ben10-grid-2 img');
 var gallery4 = document.querySelectorAll('.portfolio-missao-grid img'); // Adiciona a nova galeria
+var gallery5 = document.querySelectorAll('.gallery-img');
 
 // Variáveis para controlar a galeria atual e o índice da imagem
 var currentGallery = [];
@@ -17,7 +22,12 @@ var currentIndex = 0;
 function openLightbox(gallery, index) {
     currentGallery = gallery;
     currentIndex = index;
-    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    var image = currentGallery[currentIndex];
+    lightboxImg.src = image.getAttribute('data-full');
+    lightboxTitle.textContent = image.getAttribute('data-title');
+    lightboxDate.textContent = image.getAttribute('data-date');
+    lightboxAbout.textContent = image.getAttribute('data-about');
+    lightboxHistory.textContent = image.getAttribute('data-history');
     lightbox.style.display = "flex";
     pageContent.classList.add('blur');
     console.log("Lightbox opened, currentIndex:", currentIndex);
@@ -50,6 +60,7 @@ function initializeZoom() {
 function closeLightbox() {
     lightbox.style.display = "none";
     pageContent.classList.remove('blur');
+    console.log("Lightbox closed");
 
     // Atualizar o Locomotive Scroll
     if (scroll) {
@@ -81,6 +92,11 @@ gallery4.forEach((image, index) => {
         openLightbox(gallery4, index);
     });
 });
+gallery5.forEach((image, index) => {
+    image.addEventListener('click', function() {
+        openLightbox(gallery5, index);
+    });
+});
 
 // Evento de clique para o botão de fechar
 var close = document.getElementsByClassName("close")[0];
@@ -94,6 +110,13 @@ window.onclick = function(event) {
         closeLightbox();
     }
 }
+
+// Evento de clique dentro do .lightbox-content para fechar se for área vazia
+lightboxContent.addEventListener('click', function(event) {
+    if (event.target === lightboxContent) {
+        closeLightbox();
+    }
+});
 
 // Navegação pelas imagens
 var prev = document.querySelector('.prev');
@@ -113,9 +136,9 @@ next.addEventListener('click', function() {
     setTimeout(initializeZoom, 100);
 });
 
-// Funcionalidade de swipe para dispositivos móveis
-lightbox.addEventListener('touchstart', handleTouchStart, false);
-lightbox.addEventListener('touchmove', handleTouchMove, false);
+// Funcionalidade de swipe para dispositivos móveis na imagem apenas
+lightboxImg.addEventListener('touchstart', handleTouchStart, false);
+lightboxImg.addEventListener('touchmove', handleTouchMove, false);
 
 var xDown = null;
 var yDown = null;
@@ -219,3 +242,20 @@ document.querySelector('.contact-form').addEventListener('submit', function(even
             alert('Failed to send message: ' + JSON.stringify(error));
         });
 });
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("backToTop").style.display = "block";
+    } else {
+        document.getElementById("backToTop").style.display = "none";
+    }
+}
+
+// Voltar ao topo quando o usuário clicar no botão
+function topFunction() {
+    document.body.scrollTop = 0; // Para Safari
+    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+}
+

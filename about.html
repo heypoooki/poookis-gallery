@@ -26,6 +26,7 @@
             <ul>
                 <li><a href="index.html">Portfolio</a></li>
                 <li class="selected"><a href="about.html">About</a></li>
+                <li><a href="store.html">Store</a></li>
                 <li><a href="works.html">Works</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -81,7 +82,21 @@
         <span class="prev">&lt;</span>
         <span class="next">&gt;</span>
         <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-content">
+            <img id="lightbox-img">
+            <div class="info-box">
+                <h2 id="lightbox-title"></h2>
+                <p id="lightbox-date"></p>
+                <div>
+                    <h3>About:</h3>
+                    <p id="lightbox-about"></p>
+                </div>
+                <div>
+                    <h3>History:</h3>
+                    <p id="lightbox-history"></p>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

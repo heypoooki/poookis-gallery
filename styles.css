@@ -158,39 +158,67 @@ body.fixed {
 .lightbox {
     display: none;
     position: fixed;
-    z-index: 10;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .lightbox-content {
-    display: block;
-    max-height: 90vh;
-    width: auto;
-    max-width: 90vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 95%; /* Aumente a largura geral */
+    height: 85%;
+    max-width: 90%; /* Aumente a largura máxima */
+    max-height: 90%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .lightbox-content img {
     max-width: 100%;
     max-height: 100%;
-    width: auto;
-    height: auto;
+    object-fit: contain;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.info-box {
+    color: white;
+    max-width: 40%;
+    max-height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.info-box h2,
+.info-box p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.lightbox .prev,
+.lightbox .next,
+.lightbox .close {
+    position: absolute;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 10px;
 }
 
 .lightbox .prev,
 .lightbox .next {
-    cursor: pointer;
-    position: absolute;
     top: 50%;
     width: auto;
     padding: 16px;
     margin-top: -22px;
-    color: white;
     font-weight: bold;
     font-size: 20px;
     transition: 0.6s ease;
@@ -206,7 +234,7 @@ body.fixed {
 
 .lightbox .next {
     right: 20px;
-    border-radius: 3px 3px 0 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .lightbox .prev:hover,
@@ -214,7 +242,7 @@ body.fixed {
     background-color: rgba(0,0,0,0.8);
 }
 
-.close {
+.lightbox .close {
     position: absolute;
     top: 20px;
     right: 35px;
@@ -224,11 +252,77 @@ body.fixed {
     transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.lightbox .close:hover,
+.lightbox .close:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1600px) {
+    .lightbox-content {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .lightbox-content img {
+        max-width: 90%;
+        max-height: 90%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        color: white;
+        max-width: 100%;
+        max-height: 100%;
+        overflow-y: auto;
+        box-sizing: border-box;
+        margin-left: 1em;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    .info-box h2,
+    .info-box h3 { /* Adiciona h3 aqui */
+        font-size: 1.5em;
+    }
+
+    .info-box p {
+        font-size: 1em;
+    }
+
+}
+
+@media screen and (max-width: 1450px) {
+    .lightbox-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 70%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .info-box {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    .info-box h2,
+    .info-box h3 { /* Adiciona h3 aqui */
+        font-size: 1.2em;
+    }
+
+    .info-box p {
+        font-size: 0.9em;
+    }
 }
 
 footer {
@@ -493,6 +587,13 @@ footer {
     font-size: 3em;
     margin-bottom: 20px;
     text-align: center;
+}
+
+.faq-title {
+    font-size: 4em;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .about-intro {
@@ -774,3 +875,227 @@ a:hover {
 
 }
 
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Ajustando o tamanho das imagens dentro dos cartões de preços */
+.price-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Garantindo que o texto dentro dos cartões seja proporcional */
+.price-card h3 {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.price-card p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.price-card ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    font-size: 1em;
+}
+
+/* Ajustando a exibição em diferentes larguras de tela */
+@media (max-width: 768px) {
+    .price-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .price-card h3 {
+        font-size: 1.2em;
+    }
+
+    .price-card p, .price-card ul {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .price-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .price-card h3 {
+        font-size: 1em;
+    }
+
+    .price-card p, .price-card ul {
+        font-size: 0.8em;
+    }
+}
+
+/* Estilizando a seção de detalhes */
+.details {
+    background-color: #f5f0e6; /* Ajuste a cor de fundo conforme necessário */
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.details-item {
+    margin-bottom: 20px;
+}
+
+.details h2 {
+    font-size: 5em;
+    color: #000000; /* Ajuste a cor conforme necessário */
+    margin-bottom: 10px;
+}
+
+.details ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.details ul li {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333; /* Ajuste a cor do texto conforme necessário */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .details h2 {
+        font-size: 1.5em;
+    }
+
+    .details ul li {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .details h2 {
+        font-size: 1.2em;
+    }
+
+    .details ul li {
+        font-size: 0.8em;
+    }
+}
+
+/* Estilos para a seção de Perguntas Frequentes */
+.faq {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.faq h2 {
+    font-size: 4em;
+    color: #000000; /* Ajuste a cor conforme necessário */
+    margin-bottom: 20px;
+    margin-block-start: 0;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-item input {
+    display: none;
+}
+
+.faq-item label {
+    font-size: 1em;
+    display: block;
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.faq-item .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 10px;
+}
+
+.faq-item input:checked + label + .faq-content {
+    max-height: 1000px; /* Valor suficiente para o conteúdo expandido */
+    padding: 10px 10px 10px 20px;
+}
+
+.faq-item .faq-content p {
+    margin: 0;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .faq h2 {
+        font-size: 1.5em;
+    }
+
+    .faq-item label {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq h2 {
+        font-size: 1.2em;
+    }
+
+    .faq-item label {
+        font-size: 0.8em;
+    }
+}
+
+/* Estilos para o botão de "Voltar ao topo" */
+#backToTop {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #a27951;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#backToTop:hover {
+    background-color: #555;
+}
+
+#included  {
+
+    margin-block-start: 0.2em;
+
+}
+
+#pleasenote {
+    text-align: center;
+    size: 2em;
+}
+
+#textnote {
+
+    text-align: center;
+    padding: 5px;
+    padding-left: 20%;
+    padding-right: 20%;
+
+}
