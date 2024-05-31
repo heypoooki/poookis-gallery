@@ -156,16 +156,17 @@ body.fixed {
 }
 
 .lightbox {
-    display: none;
+    display: none; /* Esconde o lightbox inicialmente */
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9); /* Cor de fundo com opacidade */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
 .lightbox-content {
@@ -939,22 +940,30 @@ a:hover {
     }
 }
 
-/* Estilizando a seção de detalhes */
 .details {
-    background-color: #f5f0e6; /* Ajuste a cor de fundo conforme necessário */
-    padding: 20px;
-    border-radius: 5px;
-    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    margin-top: 3em;
 }
 
 .details-item {
-    margin-bottom: 20px;
+    background-color: #f8f8f2;
+    padding: 20px;
+    border-radius: 5px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
+.faq-title {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 4em;
+    color: #000000;
 }
 
 .details h2 {
-    font-size: 5em;
+    font-size: 3em;
     color: #000000; /* Ajuste a cor conforme necessário */
-    margin-bottom: 10px;
 }
 
 .details ul {
@@ -968,9 +977,39 @@ a:hover {
     color: #333; /* Ajuste a cor do texto conforme necessário */
 }
 
+.separator {
+    width: 80%;
+    height: 1px;
+    background-color: #050e087a; /* Cor da barra de separação */
+    margin: 10px auto; /* Espaço entre a barra e o texto */
+}
+
+.separator2 {
+    width: 70%;
+    height: 1px;
+    background-color: #050e087a; /* Cor da barra de separação */
+    margin: 10px auto; /* Espaço entre a barra e o texto */
+}
+
+section {
+    display: block;
+    unicode-bidi: isolate;
+    margin-bottom: 2em;
+}
+
 /* Ajustes responsivos */
 @media (max-width: 768px) {
-    .details h2 {
+    .details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details-item {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .faq-title {
         font-size: 1.5em;
     }
 
@@ -980,7 +1019,7 @@ a:hover {
 }
 
 @media (max-width: 480px) {
-    .details h2 {
+    .faq-title {
         font-size: 1.2em;
     }
 
@@ -988,7 +1027,6 @@ a:hover {
         font-size: 0.8em;
     }
 }
-
 /* Estilos para a seção de Perguntas Frequentes */
 .faq {
     background-color: #ffffff;
@@ -1019,18 +1057,27 @@ a:hover {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid #ddd;
+    border: 1px solid #f8f8f2;
+    transition: background 0.3s ease;
+}
+
+.faq-item input:checked + label {
+    background: #f8f8f2;
 }
 
 .faq-item .faq-content {
     max-height: 0;
+    opacity: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(-10px);
     padding-left: 10px;
 }
 
 .faq-item input:checked + label + .faq-content {
     max-height: 1000px; /* Valor suficiente para o conteúdo expandido */
+    opacity: 1;
+    transform: translateY(0);
     padding: 10px 10px 10px 20px;
 }
 
@@ -1051,7 +1098,8 @@ a:hover {
 
 @media (max-width: 480px) {
     .faq h2 {
-        font-size: 1.2em;
+        font-size: 2em;
+        text-align: center;
     }
 
     .faq-item label {
@@ -1059,21 +1107,22 @@ a:hover {
     }
 }
 
+
 /* Estilos para o botão de "Voltar ao topo" */
 #backToTop {
-    display: none; /* Escondido por padrão */
+    display: none; /* Esconde o botão inicialmente */
     position: fixed;
     bottom: 20px;
     right: 30px;
     z-index: 99;
+    font-size: 18px;
     border: none;
     outline: none;
-    background-color: #a27951;
+    background-color: #000;
     color: white;
     cursor: pointer;
     padding: 15px;
-    border-radius: 10px;
-    font-size: 18px;
+    border-radius: 4px;
 }
 
 #backToTop:hover {
@@ -1098,4 +1147,85 @@ a:hover {
     padding-left: 20%;
     padding-right: 20%;
 
+}
+
+.donation-section {
+    max-width: 400px; /* Largura menor para a div */
+    margin: 0 auto;
+    text-align: center; /* Centraliza o texto */
+    margin-bottom: 1em;
+    margin-top: 1em;
+    background-color: #f8f8f2; /* Cor de fundo */
+    border-radius: 15px; /* Bordas arredondadas */
+    padding: 20px; /* Adiciona espaçamento interno */
+}
+
+
+.donation-section h3 {
+    margin-bottom: 10px;
+    font-size: 3em;
+    text-align: center;
+    font-family: 'Reenie Beanie', cursive; /* Fonte Reenie Beanie */
+    color: #131313;
+    margin-top: 10px;
+}
+
+.donation-section p {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    color: #131313;
+}
+
+.donation-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os botões */
+}
+
+.donation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Largura total do contêiner */
+    max-width: 300px; /* Largura máxima dos botões */
+    padding: 0.8em 3em; /* Mais largo horizontalmente */
+    margin: 10px 0;
+    border: 1px solid #556B2F;
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #556B2F;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.donation-button:hover {
+    background-color: #556B2F;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.donation-button img {
+    margin-right: 10px; /* Espaço entre o ícone e o texto */
+    width: 24px; /* Ajuste conforme necessário */
+    height: 24px; /* Ajuste conforme necessário */
+}
+
+@media screen and (max-width: 460px) {
+    .donation-button {
+        max-width: 250px; /* Largura máxima reduzida para telas menores */
+        padding: 0.6em 2em; /* Redução do espaçamento horizontal */
+        font-size: 0.9rem; /* Redução do tamanho da fonte */
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .donation-button {
+        max-width: 150px; /* Largura máxima reduzida para telas menores */
+        padding: 0.6em 2em; /* Redução do espaçamento horizontal */
+        font-size: 0.9rem; /* Redução do tamanho da fonte */
+    }
 }

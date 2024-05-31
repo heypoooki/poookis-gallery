@@ -18,16 +18,21 @@ var gallery5 = document.querySelectorAll('.gallery-img');
 var currentGallery = [];
 var currentIndex = 0;
 
-// Função para abrir o lightbox
-function openLightbox(gallery, index) {
-    currentGallery = gallery;
-    currentIndex = index;
-    var image = currentGallery[currentIndex];
+// Função para atualizar a lightbox
+function updateLightbox(index) {
+    var image = currentGallery[index];
     lightboxImg.src = image.getAttribute('data-full');
     lightboxTitle.textContent = image.getAttribute('data-title');
     lightboxDate.textContent = image.getAttribute('data-date');
     lightboxAbout.textContent = image.getAttribute('data-about');
     lightboxHistory.textContent = image.getAttribute('data-history');
+}
+
+// Função para abrir o lightbox
+function openLightbox(gallery, index) {
+    currentGallery = gallery;
+    currentIndex = index;
+    updateLightbox(currentIndex);
     lightbox.style.display = "flex";
     pageContent.classList.add('blur');
     console.log("Lightbox opened, currentIndex:", currentIndex);
@@ -37,7 +42,7 @@ function openLightbox(gallery, index) {
 
     // Atualizar o Locomotive Scroll
     if (scroll) {
-        scroll.update();
+        scroll.stop();
     }
 }
 
@@ -64,6 +69,7 @@ function closeLightbox() {
 
     // Atualizar o Locomotive Scroll
     if (scroll) {
+        scroll.start();
         scroll.update();
     }
 }
@@ -92,6 +98,7 @@ gallery4.forEach((image, index) => {
         openLightbox(gallery4, index);
     });
 });
+
 gallery5.forEach((image, index) => {
     image.addEventListener('click', function() {
         openLightbox(gallery5, index);
@@ -125,14 +132,14 @@ var next = document.querySelector('.next');
 prev.addEventListener('click', function() {
     currentIndex = (currentIndex === 0) ? currentGallery.length - 1 : currentIndex - 1;
     console.log("Prev clicked, currentIndex:", currentIndex);
-    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    updateLightbox(currentIndex);
     setTimeout(initializeZoom, 100);
 });
 
 next.addEventListener('click', function() {
     currentIndex = (currentIndex === currentGallery.length - 1) ? 0 : currentIndex + 1;
     console.log("Next clicked, currentIndex:", currentIndex);
-    lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+    updateLightbox(currentIndex);
     setTimeout(initializeZoom, 100);
 });
 
@@ -169,7 +176,7 @@ function handleTouchMove(evt) {
             currentIndex = (currentIndex === 0) ? currentGallery.length - 1 : currentIndex - 1;
         }
         console.log("Swipe detected, currentIndex:", currentIndex);
-        lightboxImg.src = currentGallery[currentIndex].getAttribute('data-full');
+        updateLightbox(currentIndex);
         setTimeout(initializeZoom, 100);
     }
     // Reset values
@@ -206,6 +213,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Garantir que o Locomotive Scroll seja atualizado na inicialização da página
             window.addEventListener('load', () => {
                 scroll.update();
+            });
+
+            // Atualizar o Locomotive Scroll ao abrir ou fechar caixas do FAQ
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    setTimeout(() => {
+                        scroll.update();
+                    }, 300); // Ajuste o tempo para coincidir com a duração da animação
+                });
             });
         }
     } else {
@@ -253,9 +270,22 @@ function scrollFunction() {
     }
 }
 
-// Voltar ao topo quando o usuário clicar no botão
-function topFunction() {
-    document.body.scrollTop = 0; // Para Safari
-    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
-}
+document.getElementById('backToTop').addEventListener('click', function(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});
 
+// Atualizando Locomotive Scroll quando FAQ é expandido ou recolhido
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        setTimeout(() => {
+            if (scroll) {
+                scroll.update();
+            }
+        }, 300); // Ajuste o tempo para coincidir com a duração da animação
+    });
+});
+
+function showNotAvailableAlert() {
+    alert("Sorry, this feature is not yet available.");
+}
