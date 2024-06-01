@@ -990,6 +990,14 @@ a:hover {
     background-color: #050e087a; /* Cor da barra de separação */
     margin: 10px auto; /* Espaço entre a barra e o texto */
 }
+.separator3 {
+    width: 100%;
+    height: 1px;
+    background-color: #050e087a; /* Cor da barra de separação */
+    margin: 10px auto; /* Espaço entre a barra e o texto */
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
 
 section {
     display: block;
@@ -1202,7 +1210,48 @@ section {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
 .donation-button:hover {
+    background-color: #556B2F;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.waitlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0; /* Ajuste o espaço acima e abaixo do contêiner */
+}
+
+#waitnote {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px; /* Espaço entre o texto e o botão */
+}
+
+.waitlist-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 150px; /* Largura máxima do botão */
+    padding: 0.8em 2em; /* Mais largo horizontalmente */
+    margin: 10px 0; /* Ajuste para espaço acima e abaixo do botão */
+    border: 1px solid #556B2F;
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #556B2F;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.waitlist-button:hover {
     background-color: #556B2F;
     color: #ffffff;
     text-decoration: none;
@@ -1229,3 +1278,139 @@ section {
         font-size: 0.9rem; /* Redução do tamanho da fonte */
     }
 }
+
+/* Estilos para a seção de termos e condições */
+.terms-section {
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    animation: slideInDown 0.5s ease-in-out;
+}
+
+.terms-title {
+    font-size: 2.5em;
+    text-align: center;
+    margin: 20px 0;
+    color: #191d11;
+    font-family: "Reenie Beanie", cursive;
+    animation: slideInDown 0.5s ease-in-out;
+    margin-top: 0px;
+}
+
+.terms-list {
+    list-style: none;
+    padding: 0;
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+.terms-list li {
+    background: #fff;
+    border-left: 5px solid #556B2F;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.terms-list li h3 {
+    margin-top: 0;
+    font-size: 1.7em;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+
+.terms-list li p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Botões */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.accept-button, .decline-button {
+    padding: 0.8em 2em;
+    border: 1px solid #556B2F;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #556B2F;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0 5px;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.accept-button:hover, .decline-button:hover {
+    background-color: #556B2F;
+    color: #ffffff;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 2em;
+    }
+
+    .terms-title {
+        font-size: 2em;
+    }
+
+    .terms-list li h3 {
+        font-size: 1.4em;
+    }
+
+    .terms-list li p {
+        font-size: 1em;
+    }
+
+    .accept-button, .decline-button {
+        font-size: 0.9rem;
+        padding: 0.7em 1.5em;
+    }
+}
+
+@media (max-width: 420px) {
+    .accept-button, .decline-button {
+        display: block;
+        width: 80%;
+        margin: 10px auto;
+    }
+}
+
