@@ -251,7 +251,7 @@ document.querySelector('.contact-form').addEventListener('submit', function(even
         return;
     }
 
-    emailjs.sendForm('service_mb7xe7e', 'template_gascqfv', this)
+    emailjs.sendForm('service_fkl3ozh', 'template_0djp98h', this)
         .then(function() {
             alert('Message sent successfully!');
             localStorage.setItem('lastSendTimestamp', currentTime);
